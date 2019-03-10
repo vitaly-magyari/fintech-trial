@@ -22,7 +22,6 @@ public class RandomDateOfBirth {
     }
 
     public Date getDateTime() {
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         return gc.getTime();
     }
 

@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class RandomizedReader {
             }
             int randomWordNumber = (int) (Math.random() * words.size());
             return words.get(randomWordNumber);
-        } catch (Exception e) {
+        } catch (IOException e) {
             return "";
         }
 

@@ -1,4 +1,4 @@
-import com.sun.media.sound.InvalidFormatException;
+import com.itextpdf.text.DocumentException;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 
@@ -11,7 +11,7 @@ public class CreateXlsFile {
     private static String[] columns = {"Имя", "Отчество", "Фамилия", "Возраст",
             "Пол", "Дата рождения", "ИНН", "Почтовый индекс", "Страна",
             "Область", "Город", "Улица", "Дом", "Квартира"};
-    private static List<Users> users = new ArrayList<>();
+    private static List<User> users = new ArrayList<>();
 
     static {
         Calendar dateOfBirth = Calendar.getInstance();
@@ -46,7 +46,7 @@ public class CreateXlsFile {
                             "src/main/resources/SurnamesFem.txt"));
                 }
 
-                users.add(new Users(
+                users.add(new User(
                         randomFirstName,
                         randomSecondName,
                         randomLastName,
@@ -71,9 +71,8 @@ public class CreateXlsFile {
         }
     }
 
-    public static void main(String[] args) throws IOException, InvalidFormatException {
+    public static void main(String[] args) throws IOException, DocumentException {
         Workbook workbook = new HSSFWorkbook();
-        CreationHelper creationHelper = workbook.getCreationHelper();
         Sheet sheet = workbook.createSheet("Пользователи");
 
         Font headerFont = workbook.createFont();
@@ -93,10 +92,9 @@ public class CreateXlsFile {
 
         CellStyle dateCellStyle = workbook.createCellStyle();
         SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-        String dateString = format.format(new Date());
 
         int rowNum = 1;
-        for (Users user : users) {
+        for (User user : users) {
             Row row = sheet.createRow(rowNum++);
             row.createCell(0).setCellValue(user.firstName);
             row.createCell(1).setCellValue(user.secondName);
@@ -122,12 +120,15 @@ public class CreateXlsFile {
         }
 
         File outputFile = new File("Users.xls");
-
         FileOutputStream fileOut = new FileOutputStream(outputFile);
         workbook.write(fileOut);
         fileOut.close();
         workbook.close();
         System.out.println("Файл создан. Путь: " + outputFile.getAbsolutePath());
+
+        File file = new File("Users.pdf");
+//        file.getParentFile().mkdirs();
+        new CreatePDF(users).createFile(file.getAbsolutePath());
     }
 }
 

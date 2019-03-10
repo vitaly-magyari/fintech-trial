@@ -1,6 +1,6 @@
 import java.util.Date;
 
-public class Users {
+public class User {
     public String firstName;
     public String secondName;
     public String lastName;
@@ -16,10 +16,10 @@ public class Users {
     public Integer house;
     public Integer flat;
 
-    public Users(String firstName, String secondName, String lastName,
-                 Integer age, String gender, Date dateOfBirth, String iNN,
-                 Integer zipcode, String country, String area,
-                 String city, String street, Integer house, Integer flat) {
+    public User(String firstName, String secondName, String lastName,
+                Integer age, String gender, Date dateOfBirth, String iNN,
+                Integer zipcode, String country, String area,
+                String city, String street, Integer house, Integer flat) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.lastName = lastName;
