@@ -4,9 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>CreateXlsFile</groupId>
-    <artifactId>CreateXlsFile</artifactId>
+    <groupId>com.fintech.internship</groupId>
+    <artifactId>user-generator</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <name>Users</name>
 
 <dependencies>
     <dependency>
@@ -18,11 +20,6 @@
         <groupId>com.itextpdf</groupId>
         <artifactId>itextpdf</artifactId>
         <version>5.5.13</version>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.pdfbox</groupId>
-        <artifactId>pdfbox</artifactId>
-        <version>2.0.14</version>
     </dependency>
     <dependency>
         <groupId>org.bouncycastle</groupId>
@@ -50,8 +47,6 @@
         <artifactId>flying-saucer-pdf-itext5</artifactId>
         <version>9.0.1</version>
     </dependency>
-
-
 </dependencies>
 
     <build>
@@ -65,8 +60,44 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <finalName>Users1</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.fintech.internship.main.CreateXlsFile</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src\main\resources</directory>
+                <includes>
+                    <include>NamesMale.txt</include>
+                    <include>NamesFem.txt</include>
+                    <include>SecNamesFem.txt</include>
+                    <include>SecNamesMale.txt</include>
+                    <include>SurnamesFem.txt</include>
+                    <include>SurnamesMale.txt</include>
+                    <include>Countries.txt</include>
+                    <include>Areas.txt</include>
+                    <include>Cities.txt</include>
+                    <include>Streets.txt</include>
+                    <include>InconsolataCyr.ttf</include>
+                </includes>
+            </resource>
+        </resources>
+
     </build>
+
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
