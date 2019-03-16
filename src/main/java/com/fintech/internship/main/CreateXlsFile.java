@@ -1,5 +1,7 @@
 package com.fintech.internship.main;
 
+import com.fintech.internship.API.Result;
+import com.fintech.internship.API.UserRequest;
 import com.fintech.internship.data.User;
 import com.fintech.internship.data.UserGenerator;
 import com.fintech.internship.output.CreatePDF;
@@ -16,6 +18,9 @@ public class CreateXlsFile {
 
     public static void main(String[] args) {
         List<User> users = null;
+        Result result = new UserRequest().getResult();
+        User apiUser = result.results.get(0);
+
         try {
             users = new UserGenerator().fillUsers(30);
         } catch (IOException e) {
