@@ -28,7 +28,6 @@ public class CreatePDF {
         this.format = new SimpleDateFormat("dd-MM-yyyy");
     }
 
-
     private void setFont() {
         BaseFont baseFont = null;
         try {

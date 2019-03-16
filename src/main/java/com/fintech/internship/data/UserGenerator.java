@@ -33,41 +33,52 @@ public class UserGenerator {
             if (genderFlag) {
                 randomGender = "М";
                 randomFirstName = rReader.generate(new FileReader(
-                        "src/main/resources/NamesMale.txt"));
+                        String.valueOf(getClass().getClassLoader()
+                                .getResource("NamesMale.txt"))));
                 randomSecondName = rReader.generate(new FileReader(
-                        "src/main/resources/SecNamesMale.txt"));
+                        String.valueOf(getClass().getClassLoader()
+                                .getResource("SecNamesMale.txt"))));
                 randomLastName = rReader.generate(new FileReader(
-                        "src/main/resources/SurnamesMale.txt"));
+                        String.valueOf(getClass().getClassLoader()
+                                .getResource("SurnamesMale.txt"))));
             } else {
                 randomGender = "Ж";
                 randomFirstName = rReader.generate(new FileReader(
-                        "src/main/resources/NamesFem.txt"));
+                        String.valueOf(getClass().getClassLoader()
+                                .getResource("NamesFem.txt"))));
                 randomSecondName = rReader.generate(new FileReader(
-                        "src/main/resources/SecNamesFem.txt"));
+                        String.valueOf(getClass().getClassLoader()
+                                .getResource("SecNamesFem.txt"))));
                 randomLastName = rReader.generate(new FileReader(
-                        "src/main/resources/SurnamesFem.txt"));
+                        String.valueOf(getClass().getClassLoader()
+                                .getResource("SurnamesFem.txt"))));
             }
 
             try {
-                users.add(new User(
-                        randomFirstName,
-                        randomSecondName,
-                        randomLastName,
-                        randomDateOfBirth.getAge(),
-                        randomGender,
-                        randomDateOfBirth.getDateTime(),
-                        new RandomINN().getRandomINN(),
-                        new RandomNumberGenerator().getRandomNumber(),
-                        new RandomizedReader().generate(new FileReader(
-                                "src/main/resources/Countries.txt")),
-                        new RandomizedReader().generate(new FileReader(
-                                "src/main/resources/Areas.txt")),
-                        new RandomizedReader().generate(new FileReader(
-                                "src/main/resources/Cities.txt")),
-                        new RandomizedReader().generate(new FileReader(
-                                "src/main/resources/Streets.txt")),
-                        new RandomNumberGenerator().getRandomNumber(1, 199),
-                        new RandomNumberGenerator().getRandomNumber(1, 999)));
+                User newUser = new User();
+                newUser.setFirstName(randomFirstName);
+                newUser.setSecondName(randomSecondName);
+                newUser.setLastName(randomLastName);
+                newUser.setAge(randomDateOfBirth.getAge());
+                newUser.setGender(randomGender);
+                newUser.setDateOfBirth(randomDateOfBirth.getDateTime());
+                newUser.setiNN(new RandomINN().getRandomINN());
+                newUser.setZipcode(new RandomNumberGenerator().getRandomNumber());
+                newUser.setCountry(new RandomizedReader().generate(new FileReader(
+                        String.valueOf(getClass().getClassLoader()
+                                .getResource("Countries.txt")))));
+                newUser.setArea(new RandomizedReader().generate(new FileReader(
+                        String.valueOf(getClass().getClassLoader()
+                                .getResource("Areas.txt")))));
+                newUser.setCity(new RandomizedReader().generate(new FileReader(
+                        String.valueOf(getClass().getClassLoader()
+                                .getResource("Cities.txt")))));
+                newUser.setStreet(new RandomizedReader().generate(new FileReader(
+                        String.valueOf(getClass().getClassLoader()
+                                .getResource("Streets.txt")))));
+                newUser.setHouse(new RandomNumberGenerator().getRandomNumber(1, 199));
+                newUser.setFlat(new RandomNumberGenerator().getRandomNumber(1, 999));
+                users.add(newUser);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
