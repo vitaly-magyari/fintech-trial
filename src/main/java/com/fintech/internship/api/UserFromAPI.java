@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class UserFromAPI {
 
-//    private static final String url = "https://randomuser.me/api/";
+
 
     OkHttpClient userAPI = new OkHttpClient();
 
