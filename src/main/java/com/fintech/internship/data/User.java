@@ -1,7 +1,15 @@
 package com.fintech.internship.data;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fintech.internship.api.UserDeserializer;
 
+import java.util.Date;
+import java.util.List;
+
+@JsonDeserialize(using = UserDeserializer.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     private String firstName;
     private String secondName;
@@ -17,6 +25,18 @@ public class User {
     private String street;
     private Integer house;
     private Integer flat;
+
+
+    private List<String> nameNode;
+
+    @JsonSetter("name")
+    public void setNameNode(List<String> nameNode) {
+        this.nameNode = nameNode;
+    }
+
+    public List<String> getNameNode() {
+        return nameNode;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -154,44 +174,4 @@ public class User {
         this.flat = flat;
     }
 
-//    private List<UserFromAPI> usersAPI = new ArrayList<>();
-//
-//    public static void setUsersData(List<UserFromAPI> userData, User[] users) {
-//        if(userData !=null){
-//            for (int i = 0; i < users.length; i++) {
-//                users[i] = new User();
-//                users[i].setDataFromAPI();
-//            }
-//        }else{
-//            for (int i = 0; i < users.length; i++) {
-//                users[i] = new User();
-//                users[i].setDataFromTxt();
-//            }
-//        }
-//    }
-//
-//    private void setDataFromAPI() {
-//        try {
-//            UserFromAPI newUserAPI = new UserFromAPI();
-//            newUserAPI.getGender();
-//            newUserAPI.getName().getFirstName();
-//            newUserAPI.getName().getLastName();
-//            newUserAPI.getDateOfBirth();
-//            newUserAPI.getLocation().getArea();
-//            newUserAPI.getLocation().getCity();
-//            newUserAPI.getLocation().getStreet();
-//            usersAPI.add(newUserAPI);
-//        }finally {
-//        }
-//    }
-//
-//    private void setDataFromTxt() {
-//        try {
-//            UserGenerator newUserTxt = new UserGenerator();
-//                newUserTxt.fillUsers(30);
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            }
-//        }
 }
-
