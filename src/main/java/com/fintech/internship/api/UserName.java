@@ -15,7 +15,9 @@ public class UserName implements JsonDeserialiser<UserName>{
         String data = json.getAsString();
         List<String> parts = Arrays.asList(data.split(" "));
 
-        if(parts.contains("first")) users.setFirstName();
+        // if(parts.contains("first")) {
+        //     users.setFirstName();
+        // }
 
         return userName;
     }

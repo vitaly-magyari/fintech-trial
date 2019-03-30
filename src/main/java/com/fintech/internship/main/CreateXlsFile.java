@@ -15,12 +15,7 @@ public class CreateXlsFile {
             "Область", "Город", "Улица", "Дом", "Квартира"};
 
     public static void main(String[] args) {
-        List<User> users = null;
-        try {
-            users = new UserGenerator().fillUsers(30);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        List<User> users = new UserGenerator().fillUsers(30);
         new XLSCreator(columns).populateAndWriteToXLS(users, "Users.xls");
 
         File file = new File("Users.pdf");
